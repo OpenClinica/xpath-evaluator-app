@@ -3,13 +3,12 @@ NodeJS app to evaluate ODK XPath expressions on the server using Enketo's XPath 
 
 ### Use
 
-The application has 3 parameters.
+The application has a single XPath expression parameter and 2 options.
 
-1. **required**: path to an XML file 
-2. **required**: XPath expression
-3. optional: Context path
+1. `--xml`: path to an XML file 
+2. `--context`: the context path in which the XPath expression should be evaluated 
 
-Run it via the command line as follows: `node xpath-evaluate.js <PATH TO XML FILE> <XPATH EXPR> [CONTEXT]`
+Run it via the command line as follows: `node xpath-evaluate.js <XPATH EXPR>`.
 
 Errors are returned to `stderr` and the XPath evaluation result as string to `stdout`. 
 
@@ -21,8 +20,10 @@ Errors are returned to `stderr` and the XPath evaluation result as string to `st
 node xpath-evaluate.js --help
 ```
 
-### Examples
+### Examples 
 
-* `node xpath-evaluate.js /path/to/file.xml "count-selected( /path/to/select )"`
-* `node xpath-evaluate.js /path/to/file.xml "../node" "/path/to/context"`
+* `node xpath-evaluate.js "1 + 1"` => 2
+* `node xpath-evaluate.js "/data/a" --xml ./test/xml/one.xml` => a
+* `node xpath-evaluate.js "count-selected( /data/a )" --xml ./test/xml/one.xml` => 1
+* `node xpath-evaluate.js "../a" --xml ./test/xml/one.xml --context "/data/b"` => a
 

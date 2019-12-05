@@ -14,15 +14,28 @@ const _output = ( issues = [], error = false ) => {
 };
 
 program
-    .usage( ' <XML file> <expression> [context]' )
+    .usage( '<expression>' )
+    .option( '-x --xml <file>', 'Path to XML file to evaluate expression on.' )
+    .option( '-c --context <path>', 'Path to context for the evaluation. Required if context is provided.' )
     .version( pkg.version )
     .parse( process.argv );
 
-const xmlFile = program.args[ 0 ];
-const expr = program.args[ 1 ];
-const context = program.args[ 2 ];
+program.parse( process.argv );
 
-if ( xmlFile && expr ) {
+const expr = program.args[ 0 ];
+const xmlFile = program.xml;
+const context = program.context;
+
+if ( !expr ) {
+    console.error( 'Nothing to do. Missing expression. Use --help flag to see manual.' );
+    process.exit( 1 );
+} else if ( context && !xmlFile ) {
+    console.error( 'If a context is provided, an XML file has to be provided as well. Use --help flag to see manual.' );
+    process.exit( 1 );
+}
+
+
+if ( expr ) {
     utils.getFileContents( xmlFile )
         .then( xmlFile => evaluateXPath( xmlFile, expr, context ) )
         .catch( ( errors = [] ) => {
@@ -36,6 +49,5 @@ if ( xmlFile && expr ) {
         } );
 
 } else {
-    console.error( 'Nothing to do. Missing argument(s). Use --help flag to see manual.' );
-    process.exit( 1 );
+
 }
