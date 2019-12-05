@@ -22,6 +22,8 @@ node xpath-evaluate.js --help
 
 ### Examples 
 
+Some of these expressions are evaluated on [./test/xml/one.xml](./test/xml/one.xml).
+
 * `node xpath-evaluate.js "1 + 1"` => "2"
 * `node xpath-evaluate.js "pad2('1')"` => "01"
 * `node xpath-evaluate.js "/data/a" --xml ./test/xml/one.xml` => "a"
