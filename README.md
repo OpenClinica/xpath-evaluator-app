@@ -22,11 +22,11 @@ node xpath-evaluate.js --help
 
 ### Examples 
 
-Some of these expressions are evaluated on [./test/xml/one.xml](./test/xml/one.xml).
-
 * `node xpath-evaluate.js "1 + 1"` => "2"
 * `node xpath-evaluate.js "pad2('1')"` => "01"
 * `node xpath-evaluate.js "/data/a" --xml ./test/xml/one.xml` => "a"
 * `node xpath-evaluate.js "count-selected( /data/a )" --xml ./test/xml/one.xml` => "1"
 * `node xpath-evaluate.js "../a" --xml ./test/xml/one.xml --context "/data/b"` => "a"
+* `node xpath-evaluate.js "/data/odk:b" --xml ./test/xml/namespaces.xml` => "b"
 
+The XML documents used for the sample results of these expressions are at [test/xml](./test/xml/).

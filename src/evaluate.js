@@ -31,9 +31,50 @@ function evaluateXPath( xmlStr = '<_/>', expr, contextPath ) {
         contextNode = contextResult ? contextResult.singleNodeValue : context;
     }
 
+    // Remove default namespace
+    if ( window.xmlDoc.documentElement.getAttribute( 'xmlns' ) ) {
+        window.xmlDoc.documentElement.removeAttribute( 'xmlns' );
+    }
+
+    // Create namespace resolver
+    const namespaces = _getNameSpaces( window.xmlDoc );
+    const nsResolver = {
+        lookupNamespaceURI( prefix ) {
+            return namespaces[ prefix ] || null;
+        }
+    };
+
     // Evaluate XPath
-    const result = window.xmlDoc.evaluate( expr, contextNode, null, 2 );
+    const result = window.xmlDoc.evaluate( expr, contextNode, nsResolver, 2 );
     return result.stringValue;
 }
+
+
+function _getNameSpaces( xmlDoc ) {
+    const namespaces = {};
+    const root = xmlDoc.documentElement;
+
+    // For now, we only look at the root node for namespace declarations.
+    // TODO: When needed, look at whole document for namespace declarations
+    if ( root.hasAttributes() ) {
+        Array.from( root.attributes ).forEach( attribute => {
+            if ( attribute.name.indexOf( 'xmlns:' ) === 0 ) {
+                namespaces[ attribute.name.substring( 6 ) ] = attribute.value;
+            }
+        } );
+    }
+
+    return namespaces;
+}
+
+/**
+ * Returns a namespace resolver with single `lookupNamespaceURI` method
+ *
+ * @return {{lookupNamespaceURI: Function}}
+ */
+function getNsResolver() {
+
+};
+
 
 module.exports = evaluateXPath;
