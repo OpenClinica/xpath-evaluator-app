@@ -15,8 +15,8 @@ const _output = ( issues = [], error = false ) => {
 
 program
     .usage( '<expression>' )
-    .option( '-x --xml <file>', 'Path to XML file to evaluate expression on.' )
-    .option( '-c --context <path>', 'Path to context for the evaluation. Required if context is provided.' )
+    .option( '-x --xml <file>', 'path to XML file to evaluate expression on which is required if the context is provided' )
+    .option( '-c --context <path>', 'path to XML context node for the evaluation' )
     .version( pkg.version )
     .parse( process.argv );
 

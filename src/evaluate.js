@@ -3,6 +3,8 @@ const { JSDOM } = jsdom;
 const utils = require( './utils' );
 const scriptContent = utils.getFileContentsSync( '../build/evaluator-bundle.js' );
 
+// TODO: optimize performance
+
 function evaluateXPath( xmlStr = '<_/>', expr, contextPath ) {
     // Let any logging by Enketo Core fall into the abyss.
     const virtualConsole = new jsdom.VirtualConsole();
@@ -49,7 +51,6 @@ function evaluateXPath( xmlStr = '<_/>', expr, contextPath ) {
     return result.stringValue;
 }
 
-
 function _getNameSpaces( xmlDoc ) {
     const namespaces = {};
     const root = xmlDoc.documentElement;
@@ -66,15 +67,5 @@ function _getNameSpaces( xmlDoc ) {
 
     return namespaces;
 }
-
-/**
- * Returns a namespace resolver with single `lookupNamespaceURI` method
- *
- * @return {{lookupNamespaceURI: Function}}
- */
-function getNsResolver() {
-
-};
-
 
 module.exports = evaluateXPath;

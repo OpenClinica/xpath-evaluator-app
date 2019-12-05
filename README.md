@@ -1,9 +1,9 @@
 # xpath-evaluator-app
-NodeJS app to evaluate ODK XPath expressions on the server with NodeJS using Enketo's XPath evaluator.
+NodeJS app to evaluate ODK XPath expressions using Enketo's XPath evaluator.
 
 ### Prerequisites
 
-Not sure which versions of Node are compatible yet. It's just an MVP at this stage. It was built and tested on **Node v8**.
+Not sure which versions of Node are compatible yet. It's just an MVP at this stage. It was built and tested on **Node v8** and should work on later versions as well.
 
 ### Install (using git)
 
@@ -11,7 +11,7 @@ Not sure which versions of Node are compatible yet. It's just an MVP at this sta
 2. Run `npm install --production`
 3. Run `npm link`. This will make the `xpath-evaluate` command available globally on your machine.
 
-(If this app is deemed useful it will be publish on npm, and installation will become easier).
+(If this app is deemed useful it will be published on npm, and installation will become easier).
 
 ### Uninstall
 
@@ -36,11 +36,11 @@ xpath-evaluate --help
 
 ### Examples 
 
-* `xpath-evaluate "1 + 1"` => "2"
-* `xpath-evaluate "pad2('1')"` => "01"
-* `xpath-evaluate "/data/a" --xml ./test/xml/one.xml` => "a"
-* `xpath-evaluate "count-selected( /data/a )" --xml ./test/xml/one.xml` => "1"
-* `xpath-evaluate "../a" --xml ./test/xml/one.xml --context "/data/b"` => "a"
-* `xpath-evaluate "/data/odk:b" --xml ./test/xml/namespaces.xml` => "b"
+* `xpath-evaluate "1 + 1"` :point_right: `2`
+* `xpath-evaluate "pad2('1')"` :point_right: `01`
+* `xpath-evaluate "/data/a" --xml ./test/xml/one.xml` :point_right: `a`
+* `xpath-evaluate "count-selected( /data/a )" --xml ./test/xml/one.xml` :point_right: `1`
+* `xpath-evaluate "../a" --xml ./test/xml/one.xml --context "/data/b"` :point_right: `a`
+* `xpath-evaluate "/data/odk:b" --xml ./test/xml/namespaces.xml` :point_right: `b`
 
 The XML documents used for the sample results of these expressions are at [test/xml](./test/xml/).

@@ -20,11 +20,11 @@ function getFileContents( filePath ) {
     } );
 };
 
+
+// No error handling added, since is this is not used for user-provided file paths.
 function getFileContentsSync( filePath ) {
     return fs.readFileSync( path.join( __dirname, filePath ), { encoding: 'utf-8' } );
 }
-
-// TODO: remove async function?
 
 module.exports = {
     getFileContents,
