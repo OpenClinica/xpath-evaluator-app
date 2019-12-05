@@ -1,4 +1,5 @@
 const fs = require( 'fs' );
+const path = require( 'path' );
 
 function getFileContents( filePath ) {
     return new Promise( ( resolve, reject ) => {
@@ -19,6 +20,13 @@ function getFileContents( filePath ) {
     } );
 };
 
+function getFileContentsSync( filePath ) {
+    return fs.readFileSync( path.join( __dirname, filePath ), { encoding: 'utf-8' } );
+}
+
+// TODO: remove async function?
+
 module.exports = {
-    getFileContents
+    getFileContents,
+    getFileContentsSync
 }
