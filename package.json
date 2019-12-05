@@ -1,0 +1,31 @@
+{
+  "name": "xpath-evaluator-app",
+  "version": "0.0.1",
+  "description": "evaluate XPath expressions on the command line",
+  "main": "xpath-evaluate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OpenClinica/xpath-evaluator-app.git"
+  },
+  "keywords": [
+    "XPath"
+  ],
+  "author": "Martijn van de Rijdt",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/OpenClinica/xpath-evaluator-app/issues"
+  },
+  "homepage": "https://github.com/OpenClinica/xpath-evaluator-app#readme",
+  "dependencies": {
+    "commander": "^4.0.1",
+    "enketo-xpathjs": "^1.9.4",
+    "jsdom": "^15.2.1",
+    "libxmljs": "^0.19.7"
+  },
+  "devDependencies": {
+    "eslint": "^6.7.2"
+  }
+}
