@@ -1,18 +1,18 @@
-const fs = require('fs');
+const fs = require( 'fs' );
 
-function getFileContents(filePath) {
-    return new Promise((resolve, reject) => {
-        fs.readFile(filePath, 'utf8', (err, xform) => {
-            if (err) {
-                if (err.code === 'ENOENT') {
+function getFileContents( filePath ) {
+    return new Promise( ( resolve, reject ) => {
+        fs.readFile( filePath, 'utf8', ( err, xform ) => {
+            if ( err ) {
+                if ( err.code === 'ENOENT' ) {
                     err = `File: ${filePath} does not exist.`;
                 }
-                reject(err);
+                reject( err );
             } else {
-                resolve(xform);
+                resolve( xform );
             }
-        });
-    });
+        } );
+    } );
 };
 
 module.exports = {
