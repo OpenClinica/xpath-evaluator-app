@@ -36,11 +36,13 @@ xpath-evaluate --help
 
 ### Examples 
 
-* `xpath-evaluate "1 + 1"` :point_right: `2`
+You can try these out from the app's folder. The XML documents used for the sample results of these expressions are at [test/xml](./test/xml/).
+
+* `xpath-evaluate 1+1` :point_right: `2`
+* `xpath-evaluate "1 + 1"` :point_right: `2` (spaces in expression requires use of quotation marks)
 * `xpath-evaluate "pad2('1')"` :point_right: `01`
 * `xpath-evaluate "/data/a" --xml ./test/xml/one.xml` :point_right: `a`
+* `xpath-evaluate "pad2( /data/a )" --xml ./test/xml/one.xml` :point_right: `0a`
 * `xpath-evaluate "count-selected( /data/a )" --xml ./test/xml/one.xml` :point_right: `1`
 * `xpath-evaluate "../a" --xml ./test/xml/one.xml --context "/data/b"` :point_right: `a`
 * `xpath-evaluate "/data/odk:b" --xml ./test/xml/namespaces.xml` :point_right: `b`
-
-The XML documents used for the sample results of these expressions are at [test/xml](./test/xml/).
