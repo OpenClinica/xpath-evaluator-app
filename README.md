@@ -8,8 +8,8 @@ Not sure which versions of Node are compatible yet. It's just an MVP at this sta
 ### Install (using git)
 
 1. Clone the repo (or copy the files)
-2. Run `npm install --production`
-3. Run `npm link`. This will make the `xpath-evaluate` command available globally on your machine.
+2. Run `npm install --production` from the installation folder
+3. Run `npm link` from the installation folder. This will make the `xpath-evaluate` command available globally on your machine.
 
 (If this app is deemed useful it will be published on npm, and installation will become easier).
 
