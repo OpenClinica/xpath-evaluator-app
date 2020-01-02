@@ -18,7 +18,7 @@ function evaluateXPath( xmlStr = '<_/>', expr, contextPath ) {
     scriptEl.textContent = scriptContent;
     window.document.body.appendChild( scriptEl );
     window.xmlDoc = new window.DOMParser().parseFromString( xmlStr, 'text/xml' );
-    window.XPathJS.bindDomLevel3XPath( window.xmlDoc );
+    window.XPathJS.bindDomLevel3XPath( window.xmlDoc, {} );
 
     // Output XML document errors
     const parserError = window.xmlDoc.querySelector( 'parsererror' );
