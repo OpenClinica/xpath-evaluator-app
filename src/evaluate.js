@@ -1,45 +1,33 @@
-const jsdom = require( 'jsdom' );
-const { JSDOM } = jsdom;
+const DOMParser = require( 'xmldom' ).DOMParser;
 const utils = require( './utils' );
-const scriptContent = utils.getFileContentsSync( '../build/evaluator-bundle.js' );
+const XPathJS = require( '../build/evaluator-bundle' );
 
 // TODO: optimize performance
 
 function evaluateXPath( xmlStr = '<_/>', expr, contextPath ) {
-    // Let any logging by Enketo Core fall into the abyss.
-    const virtualConsole = new jsdom.VirtualConsole();
-    const { window } = new JSDOM( '', {
-        runScripts: 'dangerously',
-        virtualConsole: virtualConsole
-    } );
-
-    // Add script to DOM
-    const scriptEl = window.document.createElement( 'script' );
-    scriptEl.textContent = scriptContent;
-    window.document.body.appendChild( scriptEl );
-    window.xmlDoc = new window.DOMParser().parseFromString( xmlStr, 'text/xml' );
-    window.XPathJS.bindDomLevel3XPath( window.xmlDoc, {} );
+    const xmlDoc = new DOMParser().parseFromString( xmlStr, 'text/xml' );
+    XPathJS.bindDomLevel3XPath( xmlDoc );
 
     // Output XML document errors
-    const parserError = window.xmlDoc.querySelector( 'parsererror' );
-    if ( parserError ) {
-        throw new Error( `Invalid XML document: ${parserError.textContent}` );
+    const parserError = xmlDoc.getElementsByTagName( 'parsererror' );
+    if ( parserError.length ) {
+        throw new Error( `Invalid XML document: ${parserError[0].textContent}` );
     }
 
     // Find context node
-    let contextNode = window.xmlDoc;
+    let contextNode = xmlDoc;
     if ( contextPath ) {
-        const contextResult = window.xmlDoc.evaluate( contextPath, window.xmlDoc, null, 9 );
+        const contextResult = xmlDoc.evaluate( contextPath, xmlDoc, null, 9 );
         contextNode = contextResult ? contextResult.singleNodeValue : context;
     }
 
     // Remove default namespace
-    if ( window.xmlDoc.documentElement.getAttribute( 'xmlns' ) ) {
-        window.xmlDoc.documentElement.removeAttribute( 'xmlns' );
+    if ( xmlDoc.documentElement.getAttribute( 'xmlns' ) ) {
+        xmlDoc.documentElement.removeAttribute( 'xmlns' );
     }
 
     // Create namespace resolver
-    const namespaces = _getNameSpaces( window.xmlDoc );
+    const namespaces = _getNameSpaces( xmlDoc );
     const nsResolver = {
         lookupNamespaceURI( prefix ) {
             return namespaces[ prefix ] || null;
@@ -47,7 +35,7 @@ function evaluateXPath( xmlStr = '<_/>', expr, contextPath ) {
     };
 
     // Evaluate XPath
-    const result = window.xmlDoc.evaluate( expr, contextNode, nsResolver, 2 );
+    const result = xmlDoc.evaluate( expr, contextNode, nsResolver, 2 );
     return result.stringValue;
 }
 

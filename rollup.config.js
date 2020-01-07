@@ -5,11 +5,11 @@ export default {
     input: 'src/evaluator.js',
     output: {
         file: 'build/evaluator-bundle.js',
-        format: 'iife',
+        format: 'cjs',
     },
     plugins: [
         resolve( {
-            browser: true,
+            browser: false,
         } ),
         commonjs( {
             include: 'node_modules/**',
