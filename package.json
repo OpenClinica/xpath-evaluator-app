@@ -26,7 +26,7 @@
         "enketo-xpath-extensions-oc": "github:OpenClinica/enketo-xpath-extensions-oc#efa9830",
         "enketo-xpathjs": "^1.9.4",
         "jsdom": "^15.2.1",
-        "xmldom": "^0.2.1"
+        "xmldom": "^0.6.0"
     },
     "devDependencies": {
         "eslint": "^6.7.2",
