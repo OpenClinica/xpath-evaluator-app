@@ -18,7 +18,7 @@ function getFileContents( filePath ) {
             resolve();
         }
     } );
-};
+}
 
 
 // No error handling added, since is this is not used for user-provided file paths.
@@ -29,4 +29,4 @@ function getFileContentsSync( filePath ) {
 module.exports = {
     getFileContents,
     getFileContentsSync
-}
+};

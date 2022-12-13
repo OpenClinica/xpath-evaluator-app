@@ -1,5 +1,4 @@
 const DOMParser = require( 'xmldom' ).DOMParser;
-const utils = require( './utils' );
 const XPathJS = require( '../build/evaluator-bundle' );
 
 // TODO: optimize performance
@@ -18,7 +17,7 @@ function evaluateXPath( xmlStr = '<_/>', expr, contextPath ) {
     let contextNode = xmlDoc;
     if ( contextPath ) {
         const contextResult = xmlDoc.evaluate( contextPath, xmlDoc, null, 9 );
-        contextNode = contextResult ? contextResult.singleNodeValue : context;
+        contextNode = contextResult ? contextResult.singleNodeValue : contextNode;
     }
 
     // Remove default namespace
