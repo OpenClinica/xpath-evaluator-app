@@ -18,7 +18,7 @@ program
     .option( '-c --context <path>', 'path to XML context node for the evaluation' )
     .version( pkg.version )
     .action((expression, options) => {
-        
+
         if (!expression){
             console.error( 'Nothing to do. Missing expression. Use --help flag to see manual.' );
             process.exit( 1 );
@@ -27,7 +27,6 @@ program
             process.exit( 1 );
         }
         
-        console.time('total');
         utils.getFileContents( options.xml )
             .then( xmlFile => evaluateXPath( xmlFile, expression, options.context ) )
             .catch( ( errors = [] ) => {
@@ -36,10 +35,9 @@ program
                 process.exit( 1 );
             } )
             .then( ( result = '' ) => {
-                console.timeEnd('total');
                 console.log( result );
                 process.exit( 0 );
             } );
     }); 
 
-    program.parse();
+program.parse();
