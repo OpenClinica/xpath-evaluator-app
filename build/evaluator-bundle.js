@@ -8339,7 +8339,7 @@ var engine = (function(){
 						if (arguments[i] instanceof NodeSetType){
 							values = values.concat(arguments[i].stringValues());
 						}
-						else{
+						else {
 							values.push(arguments[i].toString());
 						} 
 					}
@@ -9544,4 +9544,6 @@ global.window = {};
 global.document = {};
 extendXPath( engine );
 
-module.exports = engine;
+const Evaluator = engine;
+
+exports.Evaluator = Evaluator;

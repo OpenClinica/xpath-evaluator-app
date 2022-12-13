@@ -1,11 +1,11 @@
 const DOMParser = require( 'xmldom' ).DOMParser;
-const XPathJS = require( '../build/evaluator-bundle' );
+const {Evaluator} = require( '../build/evaluator-bundle' );
 
 // TODO: optimize performance
 
 function evaluateXPath( xmlStr = '<_/>', expr, contextPath ) {
     const xmlDoc = new DOMParser().parseFromString( xmlStr, 'text/xml' );
-    XPathJS.bindDomLevel3XPath( xmlDoc );
+    Evaluator.bindDomLevel3XPath( xmlDoc );
 
     // Output XML document errors
     const parserError = xmlDoc.getElementsByTagName( 'parsererror' );

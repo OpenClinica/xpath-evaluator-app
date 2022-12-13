@@ -4,4 +4,4 @@ import XPathJS from 'enketo-xpathjs';
 import extendXPath from 'enketo-xpath-extensions-oc';
 extendXPath( XPathJS );
 
-export default XPathJS;
+export const Evaluator = XPathJS;
