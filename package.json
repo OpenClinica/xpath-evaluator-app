@@ -24,12 +24,12 @@
     "dependencies": {
         "commander": "^9.4.1",
         "enketo-xpath-extensions-oc": "github:OpenClinica/enketo-xpath-extensions-oc#efa9830",
-        "enketo-xpathjs": "^1.9.4",
-        "jsdom": "^15.2.1",
-        "xmldom": "^0.2.1"
+        "enketo-xpathjs": "^1.9.5",
+        "jsdom": "^20.0.3",
+        "xmldom": "^0.6.0"
     },
     "devDependencies": {
-        "eslint": "^6.7.2",
+        "eslint": "^8.29.0",
         "rollup": "^1.27.8",
         "rollup-plugin-commonjs": "^10.1.0",
         "rollup-plugin-node-resolve": "^5.2.0"
