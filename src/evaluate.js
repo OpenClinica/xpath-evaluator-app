@@ -1,4 +1,4 @@
-const {DOMParser} = require( 'xmldom' );
+const {DOMParser} = require( '@xmldom/xmldom' );
 const {Evaluator} = require( '../build/evaluator-bundle' );
 
 // TODO: optimize performance

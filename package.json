@@ -22,11 +22,10 @@
     },
     "homepage": "https://github.com/OpenClinica/xpath-evaluator-app#readme",
     "dependencies": {
+        "@xmldom/xmldom": "^0.8.6",
         "commander": "^9.4.1",
         "enketo-xpath-extensions-oc": "github:OpenClinica/enketo-xpath-extensions-oc#efa9830",
-        "enketo-xpathjs": "^1.9.5",
-        "jsdom": "^20.0.3",
-        "xmldom": "^0.6.0"
+        "enketo-xpathjs": "^1.9.5"
     },
     "devDependencies": {
         "eslint": "^8.29.0",
